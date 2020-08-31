@@ -1,0 +1,24 @@
+.logo {
+  width: 142px;
+  height: 33px;
+  margin-bottom: 40px;
+}
+
+.logo:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 979px) {
+  .logo {
+    margin-bottom: 36px;
+    margin-left: 27px;
+  }
+}
+
+@media (max-width: 479px) {
+  .logo {
+    width: 103px;
+    height: 24px;
+    margin-bottom: 22px;
+  }
+}

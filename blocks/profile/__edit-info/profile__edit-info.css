@@ -1,0 +1,6 @@
+.profile__edit-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+

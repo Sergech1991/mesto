@@ -1,0 +1,17 @@
+@import url(__copyright/footer__copyright.css);
+
+.footer {
+  margin-bottom: 60px;
+}
+
+@media (max-width: 767px) {
+  .footer {
+    margin-bottom: 44px;
+  }
+}
+
+@media (max-width: 479px) {
+  .footer {
+    margin-bottom: 36px;
+  }
+}

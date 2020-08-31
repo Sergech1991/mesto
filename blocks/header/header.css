@@ -1,0 +1,21 @@
+@import url(__line/header__line.css);
+
+.header {
+  max-width: 882px;
+  margin: 0 auto;
+  padding-top: 45px;
+  padding-bottom: 40px;
+}
+
+@media (max-width: 979px) {
+  .header {
+    padding-top: 35px;
+    padding-bottom: 42px;
+  }
+}
+
+@media (max-width: 479px) {
+  .header {
+    padding-top: 28px;
+  }
+}

@@ -1,0 +1,18 @@
+.profile__info {
+  margin-left: 30px;
+  margin-right: auto;
+  color: #FFF;
+}
+
+@media (max-width: 767px) {
+  .profile__info {
+    margin: 0 auto;
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 479px) {
+  .profile__info {
+   margin-bottom: 36px;
+ }
+}

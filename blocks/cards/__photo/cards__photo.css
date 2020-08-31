@@ -1,0 +1,22 @@
+.cards__photo {
+  width: 100%;
+  border-radius: 10px 10px 0px 0px;
+}
+
+@media (max-width: 979px) {
+  .cards__photo {
+    border-radius: 15px 15px 0px 0px;
+  }
+}
+
+@media (max-width: 767px) {
+  .cards__photo {
+    border-radius: 20px 20px 0px 0px;
+  }
+}
+
+@media (max-width: 340px) {
+  .cards__photo {
+    border-radius: 10px 10px 0px 0px;
+  }
+}

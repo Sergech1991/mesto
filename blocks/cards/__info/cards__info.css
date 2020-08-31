@@ -1,0 +1,27 @@
+.cards__info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 21px 28px;
+  background-color: #fff;
+  border-radius: 0px 0px 10px 10px;
+}
+
+@media (max-width: 979px) {
+  .cards__info {
+    border-radius: 0px 0px 15px 15px;
+  }
+}
+
+@media (max-width: 767px) {
+  .cards__info {
+    border-radius: 0px 0px 20px 20px;
+  }
+}
+
+@media (max-width: 340px) {
+  .cards__info {
+    border-radius: 0px 0px 10px 10px;
+  }
+}

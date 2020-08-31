@@ -1,0 +1,18 @@
+.popup__field-about {
+  margin-bottom: 48px;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 13px;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+@media (max-width: 479px) {
+  .popup__field-about {
+    font-size: 12px;
+    line-height: 15px;
+    padding-bottom: 10px;
+    margin-bottom: 34px;
+  }
+}

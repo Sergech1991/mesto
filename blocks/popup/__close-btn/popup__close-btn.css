@@ -1,0 +1,29 @@
+.popup__close-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: -47px;
+  margin-right: -45px;
+  transition: opacity .5s ease;
+}
+
+.popup__close-btn:hover {
+  cursor: pointer;
+  opacity: .6;
+}
+
+@media (max-width: 767px) {
+  .popup__close-btn {
+    width: 50px;
+    margin-top: -39px;
+    margin-right: -37px;
+  }
+}
+
+@media (max-width: 479px) {
+   .popup__close-btn {
+    width: 40px;
+    margin-top: -29px;
+    margin-right: -27px;
+  }
+}
