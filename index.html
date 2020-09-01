@@ -11,7 +11,6 @@
   <div class="page">
     <header class="header">
       <img src="images/logo.svg" alt="Логотип" class="logo">
-      <img src="images/line.jpg" alt="Линия" class="header__line">
     </header>
 
     <main class="content">
@@ -20,55 +19,55 @@
         <div class="profile__info">
           <div class="profile__edit-info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="profile__edit-btn"></button>
+            <button type="button" class="profile__edit-btn"></button>
           </div>
             <p class="profile__about">Исследователь океана</p>
         </div>
-        <button class="profile__add-btn"></button>
+        <button type="button" class="profile__add-btn"></button>
       </section>
 
       <section class="container">
         <ul class="cards">
           <li class="cards__item">
-            <img src="images/karachaevsk.jpg" alt="Карачаевск" class="cards__photo">
+            <img src="images/karachaevsk.jpg" alt="Карачаевск" class="cards__photo" title="Карачаевск">
             <div class="cards__info">
-              <p class="cards__text">Карачаевск</p>
-              <img src="images/like.svg" alt="Нравится" class="cards__like">
+              <h2 class="cards__text">Карачаевск</h2>
+              <button type="button" class="cards__like"></button>
             </div>
           </li>
           <li class="cards__item">
-            <img src="images/elbrus.jpg" alt="Гора Эльбрус" class="cards__photo">
+            <img src="images/elbrus.jpg" alt="Гора Эльбрус" class="cards__photo" title="Гора Эльбрус">
             <div class="cards__info">
-              <p class="cards__text">Гора Эльбрус</p>
-              <img src="images/like.svg" alt="Нравится" class="cards__like">
+              <h2 class="cards__text">Гора Эльбрус</h2>
+              <button type="button" class="cards__like"></button>
             </div>
           </li>
           <li class="cards__item">
-            <img src="images/dombai.jpg" alt="Домбай" class="cards__photo">
+            <img src="images/dombai.jpg" alt="Домбай" class="cards__photo" title="Домбай">
             <div class="cards__info">
-              <p class="cards__text">Домбай</p>
-              <img src="images/like.svg" alt="Нравится" class="cards__like">
+              <h2 class="cards__text">Домбай</h2>
+              <button type="button" class="cards__like"></button>
             </div>
           </li>
           <li class="cards__item">
-            <img src="images/komi.jpg" alt="Гора Эльбрус" class="cards__photo" title="Каменные идолы Балбанью — гора Кисилях">
+            <img src="images/komi.jpg" alt="Каменные идолы Балбанью" class="cards__photo" title="Каменные идолы Балбанью — гора Кисилях">
             <div class="cards__info">
-              <p class="cards__text">Каменные идолы Балбанью — гора Кисилях</p>
-              <img src="images/like.svg" alt="Нравится" class="cards__like">
+              <h2 class="cards__text">Каменные идолы Балбанью — гора Кисилях</h2>
+              <button type="button" class="cards__like"></button>
             </div>
           </li>
           <li class="cards__item">
             <img src="images/vulkan.jpg" alt="Вулкан Малый Семячик Камчатка" class="cards__photo" title="Вулкан Малый Семячик Камчатка">
             <div class="cards__info">
-              <p class="cards__text">Вулкан Малый Семячик</p>
-              <img src="images/like.svg" alt="Нравится" class="cards__like">
+              <h2 class="cards__text">Вулкан Малый Семячик</h2>
+              <button type="button" class="cards__like"></button>
             </div>
           </li>
           <li class="cards__item">
-            <img src="images/baikal.jpg" alt="Озеро Байкал" class="cards__photo">
+            <img src="images/baikal.jpg" alt="Озеро Байкал" class="cards__photo" title="Озеро Байкал">
             <div class="cards__info">
-              <p class="cards__text">Озеро Байкал</p>
-              <img src="images/like.svg" alt="Нравится" class="cards__like">
+              <h2 class="cards__text">Озеро Байкал</h2>
+              <button type="button" class="cards__like"></button>
             </div>
           </li>
         </ul>
@@ -78,18 +77,18 @@
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
 
-    <section class="popup">
+    <div class="popup">
       <div class="popup__container">
-        <img src="images/close.png" alt="закрыть" class="popup__close-btn">
+        <button type="button" class="popup__close-btn"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form action="#" method="POST" class="popup__form">
-          <input type="text" name="your-name" class="popup__field-name">
-          <input type="text" name="about-you" class="popup__field-about">
-          <input type="submit" name="submit" value="Сохранить" class="popup__btn">
+        <form method="POST" class="popup__form">
+          <input type="text" name="your-name" class="popup__field-name" placeholder="Введите ваше имя" required>
+          <input type="text" name="about-you" class="popup__field-about" placeholder="Род вашей деятельности" required>
+          <button type="submit" class="popup__btn">Сохранить</button>
         </form>
       </div>
-    </section>
+    </div>
   </div>
-  <script src="script.js" defer></script>
+  <script src="script/index.js" defer></script>
 </body>
 </html>

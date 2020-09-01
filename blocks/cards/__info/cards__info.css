@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 22px 21px 28px;
+  padding: 22px 15px 28px 21px;
   background-color: #fff;
   border-radius: 0px 0px 10px 10px;
 }
