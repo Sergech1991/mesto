@@ -1,0 +1,4 @@
+.popup__title-left {
+  width: calc(100% - 72px);
+  text-align: left;
+}

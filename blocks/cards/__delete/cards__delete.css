@@ -1,21 +1,23 @@
-.cards__like {
-  width: 21px;
-  height: 18px;
-  background-color: #fff;
-  position: relative;
+.cards__delete {
+  width: 18px;
+  height: 19.3px;
+  background-color: transparent;
+  position: absolute;
+  top: 18px;
+  right: 15px;
   border: none;
   outline: none;
 }
 
-.cards__like::after {
+.cards__delete::after {
   display: block;
   content: "";
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   width: 100%;
   height: 100%;
-  background-image: url(../../../images/like.svg);
+  background-image: url(../../../images/delete.svg);
   background-repeat: no-repeat;
   background-size: cover;
   z-index: 2;
@@ -23,7 +25,7 @@
   transition: opacity .2s ease;
 }
 
-.cards__like:hover::after {
+.cards__delete:hover::after {
   cursor: pointer;
   opacity: .6;
 }

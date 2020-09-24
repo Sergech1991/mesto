@@ -4,10 +4,6 @@
   margin-bottom: 40px;
 }
 
-.logo:hover {
-  cursor: pointer;
-}
-
 @media (max-width: 979px) {
   .logo {
     margin-bottom: 36px;

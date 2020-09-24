@@ -1,5 +1,5 @@
 @import url(../vendor/normalize.css);
-@import url(../vendor/fonts/inter/inter.css);
+@import url(../vendor/inter.css);
 @import url(../blocks/root/root.css);
 @import url(../blocks/page/page.css);
 @import url(../blocks/header/header.css);
@@ -9,4 +9,6 @@
 @import url(../blocks/cards/cards.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/popup/popup.css);
+@import url(../blocks/popup-image/popup-image.css);
 @import url(../blocks/popup_opened/popup_opened.css);
+

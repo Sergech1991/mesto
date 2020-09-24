@@ -1,8 +1,10 @@
 @import url(__item/cards__item.css);
+@import url(__delete/cards__delete.css);
 @import url(__photo/cards__photo.css);
 @import url(__info/cards__info.css);
 @import url(__text/cards__text.css);
 @import url(__like/cards__like.css);
+@import url(__like/_active/cards__like_active.css);
 
 .cards {
   list-style: none;
@@ -12,6 +14,7 @@
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(3, 282px);
+  grid-auto-rows: auto;
   gap: 20px 18px;
   margin-bottom: 66px;
 }
