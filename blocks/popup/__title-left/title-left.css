@@ -2,3 +2,9 @@
   width: calc(100% - 72px);
   text-align: left;
 }
+
+@media (max-width: 479px) {
+  .popup__title-left {
+    margin-left: 19px;
+  }
+}

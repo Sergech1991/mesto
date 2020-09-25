@@ -23,89 +23,18 @@ const scaleImg = popupImg.querySelector('.popup-image__scale-photo');
 const scaleText = popupImg.querySelector('.popup-image__text');
 const closeButtonImg = popupImg.querySelector('.popup__close-btn');
 
-const initialCards  = [
-    {
-        name: 'Архыз',
-        link: 'https://artlist.pro/images/photos/o/p/38/15967/4273039179f70aa43ac18f5fadaaa642.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Вулкан Малый Семячик',
-        link: 'https://content-18.foto.my.mail.ru/community/allweneed/_groupsphoto/h-120922.jpg'
-    },
-    {
-      name: 'Каменные идолы Балбанью — гора Кисилях',
-      link: 'https://i.pinimg.com/originals/49/35/07/4935077878547dee71139f7540a5ab5f.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
-
-//открытие формы для редакирования профиля
-popupEditButton.addEventListener('click', () => {
-  popup.classList.add('popup_opened');
-  fieldName.value = profileName.textContent;
-  fieldAbout.value = profileAbout.textContent;
-});
-
-//изменение информации профиля через форму
-const formSubmitHandlerEdit = function (submitEvt) {
-  submitEvt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-
-  profileName.textContent = fieldName.value;
-  profileAbout.textContent = fieldAbout.value;
-
-  closeModal(popup);
-}
-popupEditForm.addEventListener('submit', formSubmitHandlerEdit);
-
-
-// добавление карточек из массива с помощью js
-function addCard(item) {
-  const cardsElement = cardsTemplate.cloneNode(true);
-
-  cardsElement.querySelector('.cards__photo').src = item.link;
-  cardsElement.querySelector('.cards__photo').title = item.name;
-  cardsElement.querySelector('.cards__text').textContent = item.name;
-  cardsElement.querySelector('.cards__text').alt = item.name;
-
-  cardsElement.querySelector('.cards__like').addEventListener('click', clickLike);
-  cardsElement.querySelector('.cards__delete').addEventListener('click', deleteCard);
-  cardsElement.querySelector('.cards__photo').addEventListener('click', scalePhoto);
-
-  cardsContainer.prepend(cardsElement);
-}
-
-
-function render() {
-  initialCards.reverse().forEach(addCard);
-}
-render();
 
 
 //открытие модального окна
 function openModal(val) {
   val.classList.add('popup_opened');
 }
-addButton.addEventListener('click', () => openModal(popupAdd));
 
 
 //закрытие модального окна
 function closeModal(val) {
   val.classList.remove('popup_opened');
 }
-closeButtonEdit.addEventListener('click', () => closeModal(popup));
-closeButton.addEventListener('click', () => closeModal(popupAdd));
-closeButtonImg.addEventListener('click', () => closeModal(popupImg));
 
 
 // удаление карточки
@@ -120,16 +49,58 @@ function clickLike(evt) {
 }
 
 
-//открытие попапа с картинкой
-function scalePhoto(evt) {
-  popupImg.classList.add('popup_opened');
-  scaleImg.src = evt.target.src;
-  scaleText.textContent = evt.target.title;
+
+//открытие формы для редакирования профиля
+popupEditButton.addEventListener('click', () => {
+  openModal(popup);
+  fieldName.value = profileName.textContent;
+  fieldAbout.value = profileAbout.textContent;
+});
+
+//изменение информации профиля через форму
+const handleEditFormSubmit = function (submitEvt) {
+  submitEvt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
+
+  profileName.textContent = fieldName.value;
+  profileAbout.textContent = fieldAbout.value;
+
+  closeModal(popup);
 }
 
 
+// создание карточки
+function createCard(item) {
+  const cardsElement = cardsTemplate.cloneNode(true);
+
+  const cardsElementPhoto = cardsElement.querySelector('.cards__photo');
+  const cardsElementText = cardsElement.querySelector('.cards__text');
+
+  cardsElementPhoto.src = item.link;
+  cardsElementPhoto.title = item.name;
+  cardsElementText.textContent = item.name;
+  cardsElementText.alt = item.name;
+
+  cardsElement.querySelector('.cards__like').addEventListener('click', clickLike);
+  cardsElement.querySelector('.cards__delete').addEventListener('click', deleteCard);
+  cardsElementPhoto.addEventListener('click', scalePhoto);
+
+  return cardsElement;
+}
+
+
+//добавление карточки
+function renderCard(listContainerElement, cardElement) {
+  listContainerElement.prepend(cardElement);
+}
+
+
+initialCards.reverse().forEach((item) => {
+  renderCard(cardsContainer, createCard(item));
+});
+
+
 //добавление новой карточки на страницу через форму
-function formSubmitHandlerAdd(evt) {
+function handleAddFormSubmit(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
 
   const item = {
@@ -137,11 +108,19 @@ function formSubmitHandlerAdd(evt) {
     link: fieldImage.value
   }
 
-  addCard(item);
+  renderCard(cardsContainer, createCard(item));
   popupForm.reset();
   closeModal(popupAdd);
 }
-popupForm.addEventListener('submit', formSubmitHandlerAdd);
+
+
+//открытие попапа с картинкой
+function scalePhoto(evt) {
+  openModal(popupImg);
+  scaleImg.src = evt.target.src;
+  scaleImg.alt = evt.target.alt;
+  scaleText.textContent = evt.target.title;
+}
 
 
 //закрытие модального окна кликом на оверлей
@@ -153,6 +132,20 @@ const popupCloseByCkickOnOverlay = function(event) {
   closeModal(popupAdd);
   closeModal(popupImg);
 }
+
+
+
+//Внизу файла реализуем добавление обработчиков
+addButton.addEventListener('click', () => openModal(popupAdd));
+
+closeButtonEdit.addEventListener('click', () => closeModal(popup));
+closeButton.addEventListener('click', () => closeModal(popupAdd));
+closeButtonImg.addEventListener('click', () => closeModal(popupImg));
+
+popupEditForm.addEventListener('submit', handleEditFormSubmit);
+
+popupForm.addEventListener('submit', handleAddFormSubmit);
+
 popup.addEventListener('click', popupCloseByCkickOnOverlay);
 popupAdd.addEventListener('click', popupCloseByCkickOnOverlay);
 popupImg.addEventListener('click', popupCloseByCkickOnOverlay);
