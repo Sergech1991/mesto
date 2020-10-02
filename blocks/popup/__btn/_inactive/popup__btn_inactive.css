@@ -1,0 +1,6 @@
+.popup__btn_inactive {
+  background-color: #e5e5e5;
+  color: #B8B8B8;
+  cursor: default;
+  user-select: none;
+}

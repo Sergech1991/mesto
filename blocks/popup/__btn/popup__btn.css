@@ -17,6 +17,16 @@
   opacity: .8;
 }
 
+.popup__btn:disabled {
+  color: #B8B8B8;
+  background: #EDEDED;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 @media (max-width: 479px) {
   .popup__btn {
     font-size: 14px;

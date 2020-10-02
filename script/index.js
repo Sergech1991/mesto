@@ -7,6 +7,7 @@ const profileAbout = document.querySelector('.profile__about');
 const popupEditForm = popup.querySelector('.popup__form');
 const fieldName = popup.querySelector('.popup__field-name');
 const fieldAbout = popup.querySelector('.popup__field-about');
+const popupBtn = popupEditForm.querySelector('.popup__btn');
 
 const addButton = document.querySelector('.profile__add-btn');
 const popupAdd = document.getElementById('popup-add');
@@ -22,7 +23,6 @@ const popupImg = document.getElementById('popup-image');
 const scaleImg = popupImg.querySelector('.popup-image__scale-photo');
 const scaleText = popupImg.querySelector('.popup-image__text');
 const closeButtonImg = popupImg.querySelector('.popup__close-btn');
-
 
 
 //открытие модального окна
@@ -53,6 +53,10 @@ function clickLike(evt) {
 //открытие формы для редакирования профиля
 popupEditButton.addEventListener('click', () => {
   openModal(popup);
+
+  popupBtn.classList.remove('popup__btn_inactive');
+  popupBtn.removeAttribute('disabled');
+
   fieldName.value = profileName.textContent;
   fieldAbout.value = profileAbout.textContent;
 });
@@ -134,6 +138,16 @@ const popupCloseByCkickOnOverlay = function(event) {
 }
 
 
+//закрытие модального окна на Esc
+const popupCloseByCkickOnEsc = function(evt) {
+  if (evt.keyCode === 27) {
+    closeModal(popup);
+    closeModal(popupAdd);
+    closeModal(popupImg);
+  }
+}
+
+
 
 //Внизу файла реализуем добавление обработчиков
 addButton.addEventListener('click', () => openModal(popupAdd));
@@ -149,3 +163,6 @@ popupForm.addEventListener('submit', handleAddFormSubmit);
 popup.addEventListener('click', popupCloseByCkickOnOverlay);
 popupAdd.addEventListener('click', popupCloseByCkickOnOverlay);
 popupImg.addEventListener('click', popupCloseByCkickOnOverlay);
+
+document.addEventListener('keydown', popupCloseByCkickOnEsc);
+

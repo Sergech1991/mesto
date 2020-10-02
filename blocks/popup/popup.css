@@ -5,7 +5,10 @@
 @import url(__form/popup__form.css);
 @import url(__field-name/popup__field-name.css);
 @import url(__field-about/popup__field-about.css);
+@import url(__input/popup__input.css);
+@import url(__input-error/popup__input-error.css);
 @import url(__btn/popup__btn.css);
+@import url(__btn/_inactive/popup__btn_inactive.css);
 
 .popup {
   position: fixed;
