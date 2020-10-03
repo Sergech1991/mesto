@@ -28,12 +28,14 @@ const closeButtonImg = popupImg.querySelector('.popup__close-btn');
 //открытие модального окна
 function openModal(val) {
   val.classList.add('popup_opened');
+  document.addEventListener('keydown', popupCloseByClickOnEsc);
 }
 
 
 //закрытие модального окна
 function closeModal(val) {
   val.classList.remove('popup_opened');
+  document.removeEventListener('keydown', popupCloseByClickOnEsc);
 }
 
 
@@ -49,17 +51,18 @@ function clickLike(evt) {
 }
 
 
-
 //открытие формы для редакирования профиля
-popupEditButton.addEventListener('click', () => {
+function openEditPopup() {
   openModal(popup);
-
-  popupBtn.classList.remove('popup__btn_inactive');
-  popupBtn.removeAttribute('disabled');
 
   fieldName.value = profileName.textContent;
   fieldAbout.value = profileAbout.textContent;
-});
+
+  const event = new Event('input');
+  fieldName.dispatchEvent(event);
+  fieldAbout.dispatchEvent(event);
+}
+
 
 //изменение информации профиля через форму
 const handleEditFormSubmit = function (submitEvt) {
@@ -113,7 +116,6 @@ function handleAddFormSubmit(evt) {
   }
 
   renderCard(cardsContainer, createCard(item));
-  popupForm.reset();
   closeModal(popupAdd);
 }
 
@@ -128,28 +130,27 @@ function scalePhoto(evt) {
 
 
 //закрытие модального окна кликом на оверлей
-const popupCloseByCkickOnOverlay = function(event) {
+const popupCloseByClickOnOverlay = function(event) {
   if (event.target != event.currentTarget) {
     return
   }
-  closeModal(popup);
-  closeModal(popupAdd);
-  closeModal(popupImg);
+  closeModal(event.target);
 }
 
 
 //закрытие модального окна на Esc
-const popupCloseByCkickOnEsc = function(evt) {
-  if (evt.keyCode === 27) {
-    closeModal(popup);
-    closeModal(popupAdd);
-    closeModal(popupImg);
+const popupCloseByClickOnEsc = function(evt) {
+  if (evt.key === 'Escape') {
+    const popupOpened = document.querySelector('.popup_opened');
+    closeModal(popupOpened);
   }
 }
 
 
 
+
 //Внизу файла реализуем добавление обработчиков
+popupEditButton.addEventListener('click', openEditPopup);
 addButton.addEventListener('click', () => openModal(popupAdd));
 
 closeButtonEdit.addEventListener('click', () => closeModal(popup));
@@ -160,9 +161,7 @@ popupEditForm.addEventListener('submit', handleEditFormSubmit);
 
 popupForm.addEventListener('submit', handleAddFormSubmit);
 
-popup.addEventListener('click', popupCloseByCkickOnOverlay);
-popupAdd.addEventListener('click', popupCloseByCkickOnOverlay);
-popupImg.addEventListener('click', popupCloseByCkickOnOverlay);
-
-document.addEventListener('keydown', popupCloseByCkickOnEsc);
+popup.addEventListener('click', popupCloseByClickOnOverlay);
+popupAdd.addEventListener('click', popupCloseByClickOnOverlay);
+popupImg.addEventListener('click', popupCloseByClickOnOverlay);
 
