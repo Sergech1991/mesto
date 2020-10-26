@@ -28,19 +28,19 @@ const initialCards  = [
   }
 ];
 
-const popup = document.getElementById('popup');
+const profilePopup = document.getElementById('popup');
 const popupEditButton = document.querySelector('.profile__edit-btn');
-const closeButtonEdit = popup.querySelector('.popup__close-btn');
+const closeButtonEdit = profilePopup.querySelector('.popup__close-btn');
 const profileName = document.querySelector('.profile__name');
 const profileAbout = document.querySelector('.profile__about');
 
-const popupEditForm = popup.querySelector('.popup__form');
-const fieldName = popup.querySelector('.popup__field-name');
-const fieldAbout = popup.querySelector('.popup__field-about');
+const popupEditForm = profilePopup.querySelector('.popup__form');
+const fieldName = profilePopup.querySelector('.popup__field-name');
+const fieldAbout = profilePopup.querySelector('.popup__field-about');
 
 const addButton = document.querySelector('.profile__add-btn');
 const popupAdd = document.getElementById('popup-add');
-const closeButton = popupAdd.querySelector('.popup__close-btn');
+const addPopupCloseButton = popupAdd.querySelector('.popup__close-btn');
 const cardsContainer = document.querySelector('.cards');//это контейнер для карточек
 
 const popupForm = document.querySelector('.popup__form-add');
@@ -65,22 +65,22 @@ export const allClasses = {
 
 
 //открытие модального окна
-export function openModal(val) {
-  val.classList.add('popup_opened');
+export function openModal(popup) {
+  popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupByClickOnEsc);
 }
 
 
 //закрытие модального окна
-function closeModal(val) {
-  val.classList.remove('popup_opened');
+function closeModal(popup) {
+  popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupByClickOnEsc);
 }
 
 
 //открытие формы для редакирования профиля
 function openEditPopup() {
-  openModal(popup);
+  openModal(profilePopup);
 
   fieldName.value = profileName.textContent;
   fieldAbout.value = profileAbout.textContent;
@@ -98,14 +98,19 @@ const handleEditFormSubmit = function (submitEvt) {
   profileName.textContent = fieldName.value;
   profileAbout.textContent = fieldAbout.value;
 
-  closeModal(popup);
+  closeModal(profilePopup);
 }
 
 
+//создание карточки
+function createCard(item) {
+  const card = new Card(item, '#cards_template');
+  return card;
+}
+
 // //добавление карточки
-function renderCard(listContainerElement, one) {
-  const card = new Card(listContainerElement, one);
-  const cardElement = card.generateCard();
+function renderCard(item) {
+  const cardElement = createCard(item).generateCard();
   cardsContainer .prepend(cardElement);
 }
 
@@ -150,24 +155,24 @@ const closePopupByClickOnEsc = function(evt) {
 popupEditButton.addEventListener('click', openEditPopup);
 addButton.addEventListener('click', () => openModal(popupAdd));
 
-closeButtonEdit.addEventListener('click', () => closeModal(popup));
-closeButton.addEventListener('click', () => closeModal(popupAdd));
+closeButtonEdit.addEventListener('click', () => closeModal(profilePopup));
+addPopupCloseButton.addEventListener('click', () => closeModal(popupAdd));
 closeButtonImg.addEventListener('click', () => closeModal(popupImg));
 
 popupEditForm.addEventListener('submit', handleEditFormSubmit);
 
 popupForm.addEventListener('submit', handleAddFormSubmit);
 
-popup.addEventListener('click', closePopupByClickOnOverlay);
+profilePopup.addEventListener('click', closePopupByClickOnOverlay);
 popupAdd.addEventListener('click', closePopupByClickOnOverlay);
 popupImg.addEventListener('click', closePopupByClickOnOverlay);
 
 
 
-const formEditValidator = new FormValidator(allClasses.formEditSelector, allClasses);
+const formEditValidator = new FormValidator(allClasses, allClasses.formEditSelector);
 formEditValidator.enableValidation();
 
-const formAddValidator = new FormValidator(allClasses.formAddSelector, allClasses);
+const formAddValidator = new FormValidator(allClasses, allClasses.formAddSelector);
 formAddValidator.enableValidation();
 
 

@@ -1,8 +1,8 @@
 import {allClasses} from './index.js';
 
 export default class FormValidator {
-  constructor(formSelector, allClasses) {
-    this._formSelector = formSelector;
+  constructor(allClasses, formSelector) {
+    this._formSelector = allClasses.formSelector;
     this._allClasses = allClasses;
     this._formElement = document.querySelector(formSelector);
     this._inputSelector = allClasses.inputSelector;

@@ -14,17 +14,20 @@ export default class Card {
 
   generateCard() {
     this._element = this._getTemplate();
-    this._setEventListeners();
+    this._cardImage = this._element.querySelector('.cards__photo');
 
-    this._element.querySelector('.cards__photo').src = this._link;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
     this._element.querySelector('.cards__text').textContent = this._name;
+
+    this._setEventListeners();
 
     return this._element;
   }
 
   //лайки на карточку
-  _clickLike() {
-    this._element.querySelector('.cards__like').classList.toggle('cards__like_active');
+  _clickLike(evt) {
+    evt.target.classList.toggle('cards__like_active');
   };
 
   // удаление карточки
@@ -41,19 +44,17 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._element.querySelector('.cards__like').addEventListener('click', () => {
-      this._clickLike();
+    this._element.querySelector('.cards__like').addEventListener('click', (evt) => {
+      this._clickLike(evt);
     });
 
     this._element.querySelector('.cards__delete').addEventListener('click', () => {
       this._deleteCard();
     });
 
-    this._element.querySelector('.cards__photo').addEventListener('click', () => {
+    this._cardImage.addEventListener('click', () => {
       this._scalePhoto();
     });
   }
 
 };
-
-
