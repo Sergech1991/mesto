@@ -111,7 +111,7 @@ function createCard(item) {
 // //добавление карточки
 function renderCard(item) {
   const cardElement = createCard(item).generateCard();
-  cardsContainer .prepend(cardElement);
+  cardsContainer.prepend(cardElement);
 }
 
 initialCards.reverse().forEach((item) => {
