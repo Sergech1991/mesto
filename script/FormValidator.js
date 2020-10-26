@@ -1,10 +1,8 @@
-import {allClasses} from './index.js';
-
 export default class FormValidator {
-  constructor(allClasses, formSelector) {
+  constructor(allClasses, formElement) {
     this._formSelector = allClasses.formSelector;
     this._allClasses = allClasses;
-    this._formElement = document.querySelector(formSelector);
+    this._formElement = formElement;
     this._inputSelector = allClasses.inputSelector;
     this._submitButtonSelector = allClasses.submitButtonSelector;
     this._inactiveButtonClass = allClasses.inactiveButtonClass;
@@ -23,8 +21,8 @@ _showInputError(formElement, inputElement, errorMessage) {
 //скрываем элемент ошибки
 _hideInputError(formElement, inputElement) {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-  inputElement.classList.remove(allClasses.inputErrorClass);
-  errorElement.classList.remove(allClasses.errorClass);
+  inputElement.classList.remove(this._allClasses.inputErrorClass);
+  errorElement.classList.remove(this._allClasses.errorClass);
   errorElement.textContent = '';
 };
 

@@ -52,7 +52,7 @@ export const scaleImg = popupImg.querySelector('.popup-image__scale-photo');
 export const scaleText = popupImg.querySelector('.popup-image__text');
 const closeButtonImg = popupImg.querySelector('.popup__close-btn');
 
-export const allClasses = {
+const allClasses = {
   formSelector: '.popup__form',
   formEditSelector: '.popup__form-edit',
   formAddSelector: '.popup__form-add',
@@ -105,17 +105,16 @@ const handleEditFormSubmit = function (submitEvt) {
 //создание карточки
 function createCard(item) {
   const card = new Card(item, '#cards_template');
-  return card;
+  return card.generateCard();
 }
 
-// //добавление карточки
+//добавление карточки
 function renderCard(item) {
-  const cardElement = createCard(item).generateCard();
-  cardsContainer.prepend(cardElement);
+  cardsContainer.prepend(createCard(item));
 }
 
 initialCards.reverse().forEach((item) => {
-  renderCard(item, '#cards_template');
+  renderCard(item);
 });
 
 
@@ -128,8 +127,10 @@ function handleAddFormSubmit(evt) {
     link: fieldImage.value
   }
 
-  renderCard(item, '#cards_template');
+  renderCard(item);
   closeModal(popupAdd);
+
+  popupForm.reset();
 }
 
 
@@ -169,10 +170,10 @@ popupImg.addEventListener('click', closePopupByClickOnOverlay);
 
 
 
-const formEditValidator = new FormValidator(allClasses, allClasses.formEditSelector);
+const formEditValidator = new FormValidator(allClasses, popupEditForm);
 formEditValidator.enableValidation();
 
-const formAddValidator = new FormValidator(allClasses, allClasses.formAddSelector);
+const formAddValidator = new FormValidator(allClasses, popupForm);
 formAddValidator.enableValidation();
 
 
